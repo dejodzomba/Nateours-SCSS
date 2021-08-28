@@ -1,0 +1,30 @@
+.feature-box {
+    background-color: rgba($color-white, 0.8);
+    font-size: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    border-radius: 3px;
+    transition: all 0.3s;
+    height: 22rem;
+    @include respond(tab-port) {
+        padding: 2rem;
+    }
+    &__icon {
+        font-size: 3rem;
+        margin-bottom: 0.5rem; //pomjeranje duz kartice
+        display: inline-block;
+        background-image: linear-gradient( to right, $color-primary-light, $color-primary-dark);
+        -webkit-background-clip: text; //otkine backgraound ostavit samo text
+        color: transparent; //i dodjeljivanje boje textu
+        @include respond(tab-port) {
+            margin-bottom: 0;
+        }
+    }
+    &:hover {
+        transform: translateY(-1.5rem) scale(1.1);
+    }
+    &__text {
+        color: black;
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,156 @@
+.card {
+    position: relative;
+    height: 52rem;
+    &__side {
+        height: 52rem;
+        transition: all 1.4s ease;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        backface-visibility: hidden; //Da bude back sakriven na pocetku u reload
+        border-radius: 3px;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.16);
+        &--front {
+            background-color: $color-white;
+        }
+        &--back {
+            transform: rotateY(180deg);
+            &-1 {
+                //kad je okrenut za 180deg imamo komplet boju ovu u liner gradient kao pozadina cijela
+                background-image: linear-gradient( to right bottom, $color-secondary-light, $color-secondary-dark);
+            }
+            &-2 {
+                background-image: linear-gradient( to right bottom, $color-tertiary-light, $color-tertiary-dark);
+            }
+            &-3 {
+                background-image: linear-gradient( to right bottom, $color-primary-light, $color-primary-dark);
+            }
+        }
+    }
+    &:hover &__side--front {
+        transform: rotateY(180deg);
+    }
+    &:hover &__side--back {
+        transform: rotateY(0); //vraca se na nulu
+    }
+    //Front side styling
+    &__picture {
+        background-size: cover;
+        height: 23rem; //visina velicine za sve slike
+        background-blend-mode: multiply; //da se vidi slika
+        clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        &--1 {
+            background-image: linear-gradient( to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+        }
+        &--2 {
+            background-image: linear-gradient( to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-6.jpg);
+        }
+        &--3 {
+            background-image: linear-gradient( to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-7.jpg);
+        }
+    }
+    &__heading {
+        color: #fff;
+        font-size: 2.8rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        text-align: right;
+        position: absolute;
+        right: 2rem;
+        top: 12rem;
+        width: 75%;
+    }
+    //za text na slici the sea explorer
+    &__heading-span {
+        padding: 0.8rem 1rem;
+        -webkit-box-decoration-break: clone; //ovo glavno
+        box-decoration-break: clone; //da je poravnat text recimo, tj box ako je potrebno
+        &--1 {
+            background-image: linear-gradient( to right bottom, rgba($color-secondary-light, 0.85), rgba($color-secondary-dark, 0.85));
+        }
+        &--2 {
+            background-image: linear-gradient( to right bottom, rgba($color-tertiary-light, 0.85), rgba($color-tertiary-dark, 0.85));
+        }
+        &--3 {
+            background-image: linear-gradient( to right bottom, rgba($color-primary-light, 0.85), rgba($color-primary-dark, 0.85));
+        }
+    }
+    &__details {
+        padding: 3rem; //odmaknut za 3rem
+        ul {
+            list-style: none;
+            width: 80%; //80% velcina
+            margin: 0 auto;
+            li {
+                text-align: center;
+                font-size: 1.5rem;
+                padding: 1rem; //izmedju linkova po 1rem
+                &:not(:last-child) {
+                    border-bottom: 1px solid $color-grey-light-2; //za sve osim zadnje ispod linija
+                }
+            }
+        }
+    }
+    //BACK SIDE STYLE
+    &__cta {
+        position: absolute;
+        top: 50%; //down 50%
+        left: 50%; //pomjeranje ka desnoo kad mi gledamo, sto je lijevo monitoru (njemu)
+        transform: translate(-50%, -50%); //pomjeranje takodje ka gore
+        text-align: center;
+        width: 90%;
+    }
+    &__price-box {
+        text-align: center;
+        color: $color-white;
+        margin-bottom: 8rem; //Daj jos 8rem praznog prostora ispod div - price box
+    }
+    &__price-only {
+        font-size: 1.4rem;
+        text-transform: uppercase;
+    }
+    &__price-value {
+        font-size: 6rem; //velicina cijene
+        font-weight: 100;
+    }
+    //ZA REZOLUCIJU <=900px izmjene sta je trebalo
+    @include respond(tab-port) {
+        background-color: $color-white;
+        height: auto;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, 0.16);
+        &__side {
+            height: auto;
+            position: relative;
+            box-shadow: none; //none i onda se i boja prikaze
+            border-radius: 3px;
+            &--back {
+                transform: rotateY(0); //prikaz sad na 0 na pocetku
+                clip-path: polygon( 0% 15%, 100% 0%, 100% 100%, 0% 100%); //isjekao malo back pozadinu
+            }
+        }
+        &:hover &__side--front {
+            transform: rotateY(0); //nema rotiranja
+        }
+        &__details {
+            padding: 1rem 3rem;
+        }
+        //BACK SIDE STYLE
+        &__cta {
+            position: relative; //kljucno iz absolute u relative
+            top: 0;
+            left: 0;
+            transform: translate(0);
+            text-align: center;
+            width: 100%;
+            padding: 7rem 4rem 4rem 4rem; //dodato da prosiri donji dio da upadne i button fino
+        }
+        &__price-box {
+            margin-bottom: 8rem;
+        }
+        &__price-value {
+            font-size: 6rem;
+            font-weight: 100;
+        }
+    }
+}

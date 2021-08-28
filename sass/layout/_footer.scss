@@ -1,0 +1,65 @@
+.footer {
+    background-color: $color-grey-dark-3;
+    padding: 10rem 0;
+    font-size: 1.4rem;
+    color: $color-grey-light-1;
+    @include respond(tab-port) {}
+    &__logo-box {
+        text-align: center;
+        margin-bottom: 8rem;
+        @include respond(tab-port) {
+            margin-bottom: 4rem;
+        }
+    }
+    &__logo {
+        width: 15rem;
+        height: auto;
+    }
+    //crta border top u inline blocku zajedno sa linkovima/item i pomerena gore sa padding-top:2rem
+    &__navigation {
+        border-top: 1px solid $color-grey-dark;
+        padding-top: 2rem;
+        display: inline-block;
+        //footer zadnja strana da budu linkovi na centru
+        @include respond(tab-port) {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    &__list {
+        //border-top: 1px solid $color-grey-dark;
+        list-style: none;
+    }
+    &__item {
+        display: inline-block;
+        &:not(:last-child) {
+            margin-right: 1.5rem;
+        }
+    }
+    &__link {
+        &:link,
+        &:visited {
+            color: $color-grey-light-1;
+            text-decoration: none;
+            display: inline-block;
+        }
+        &:hover,
+        &:active {
+            text-transform: uppercase;
+            color: $color-primary;
+            box-shadow: 0 1rem 2rem rgba($color-black, 0.4);
+        }
+    }
+    &__copyright {
+        border-top: 1px solid $color-grey-dark;
+        padding-top: 2rem;
+        width: 80%;
+        float: right;
+        color: $color-grey-light-1;
+        //centrirano ali popunjen prostor od pocetka do kraja
+        @include respond(tab-port) {
+            width: 100%;
+            float: none;
+        }
+    }
+}
